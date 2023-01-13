@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">
+    <title>Create Cause</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages%}
+              {% if category == 'error' %}
+             <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                  {{ message }}
+                  <button type="buttton" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+             {% else %}
+             <div class="alert alert-succes alter-dismissable fade show" role="alert">
+                 {{ message }}
+                 <button type="buttton" class="close" data-dismiss="alert">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        ></script>
+        <div class="container register">
+            <div class="container-form">
+              <div class="logo">
+                <img src="static/images/Logo.png" width="100%" height="100%" alt="Logo" />
+              </div>
+              <form action="/create_cause" method="POST" class="form" enctype = "multipart/form-data">
+                  
+                <div class="form-field">
+                  
+                  <label for="cause_name">Cause Title</label>
+                  <input type="text" id="cause_name" name="cause_name" placeholder="Enter Cause Title" />
+                </div>
+                <div class="form-field">
+                  <label for="amount">Amount needed</label>
+                  <input name="amount" id="amount"
+                      type="number"
+                      min="1"
+                      placeholder="set what you want in euro"
+                    />
+                </div>
+                <div class="form-field">
+                  
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" name="description" placeholder="Enter Cause Description" rows="10" columns="50"></textarea>
+                  </div>
+                  <div class="form-field">
+                <br>
+                <div class="form-field">
+                    <input type = "file" name = "file" />
+                    <input type = "submit"/>
+                </div>
+              </form>
+              
+            </div>
+            <div class="container-image">
+              <img
+                src="static/images/Humanitarian Help-pana.png"
+                width="100%"
+                height="100%"
+                alt="Humanitarian Help-pana.png"
+              />
+            </div>
+          </div>
+      </body>
+      </html>

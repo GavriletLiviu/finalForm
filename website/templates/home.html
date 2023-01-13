@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
+    <title>Home</title>
+</head>
+
+<body>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages%}
+      {% if category == 'error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="buttton" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% else %}
+      <div class="alert alert-succes alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="buttton" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% endif %}
+      {% endfor %}
+     {% endif %}
+      {% endwith %}
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+      ></script>
+
+<nav class="nav">
+    <div class="logo">
+      <img src="static/images/Logo2.png" width="40rem" alt="">
+      <h1>Donations organization</h1>
+    </div>
+    <form action="/logout">
+      <button typ="submit" class="nav-button" name="logout" id="logout">log out</button>
+    </form>
+    <form action="/view_profile">
+      <button typ="submit" class="nav-button" name="profile" id="profile">View Profile</button>
+    </form>
+  </nav>
+
+  <section>
+    <div class="container">
+    {% for cause in causes %}
+    <div class="card">
+      <div class="card-image">
+        <img src="{{cause.picture}}" width="100%" height="100%" alt="" />
+      </div>
+      <div class="card-description">
+        <h3 clas="card-title">{{cause.title}}</h3>
+      
+      <div>
+        <div class="card-prices">
+          <p class="card-prices-title">collected</p>
+          <p class="card-prices-title">{{cause.donated_amount}}</p>
+        </div>
+        <div class="card-prices">
+          <p class="card-prices-title">Remaining amount</p>
+          <p class="card-prices-title">{{cause.remaining_amount}}</p>
+        </div>
+      </div>
+      <form action="/redirect" method="POST" class="form">
+        <div class="card-link">
+          <button typ="submit" class="nav-button">View more details?</button>
+          <input type="hidden" id="{{cause.id}}" name="number" value="{{cause.id}}">
+        </div>
+      </form>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </section>
+
+
+
+</body>
+</html>

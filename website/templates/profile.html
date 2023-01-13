@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">
+    <title>Update Profile</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages%}
+              {% if category == 'error' %}
+             <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                  {{ message }}
+                  <button type="buttton" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+             {% else %}
+             <div class="alert alert-succes alter-dismissable fade show" role="alert">
+                 {{ message }}
+                 <button type="buttton" class="close" data-dismiss="alert">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        ></script>
+
+
+    <div class="container register">
+      <div class="container-form">
+        <div class="logo">
+          <img src="static/images/Logo.png" width="100%" height="100%" alt="Logo" />
+        </div>
+        <form action="/update" method="POST" class="form">
+            
+          <div class="form-field">
+            
+            <label for="firstname">first name</label>
+            <label name="FirstName" for="firstname">{{user.firstname}}</label>
+            <input type="firstname" id="firstname" name="firstname" placeholder="Enter New First Name" />
+          </div>
+          <div class="form-field">
+            
+            <label for="lastname">last name</label>
+            <label name="LastName" for="lastname">{{user.lastname}}</label>
+            <input type="lastname" id="lastname" name="lastname" placeholder="Enter New Last Name" />
+          </div>
+          <div class="form-field">
+            
+            <label for="username">user name</label>
+            <label name="UserName" for="username">{{user.username}}</label>
+            <input type="username" id="username" name="username" placeholder="Enter New Username" />
+          </div>
+          <div class="form-field">
+            
+            <label for="password">enter your current password</label>
+            <label name="old_password" for="old_password">   </label>
+            <input type="password" id="password" name="password_old" placeholder="Enter current password" />
+          </div>
+          <div class="form-field">
+            
+            <label for="password">enter your new password</label>
+            <input type="password" id="password" name="password_new1" placeholder="Enter New Password" />
+          </div>
+          <div class="form-field">
+            
+            <label for="password">verify your new password</label>
+            <input type="password" id="password" name="password_new2" placeholder="Verify New Password" />
+          </div>
+          <div class="form-field">
+            
+            <label for="email">your email</label>
+            <label name="Email" for="email">{{user.email}}</label>
+            <input type="email" id="email" name="email" placeholder="Enter New Email" />
+          </div>
+          <div class="form-field">
+            
+            <label for="country">enter your country</label>
+            <label name="Country" for="country">{{user.country}}</label>
+            <input type="country" id="country" name="country" placeholder="Enter New Country" />
+          </div>
+          <div class="form-links-container">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+        </form>
+        <form action="/back" method="GET" class="form">
+          <div class="form-links-container">
+            <button type="submit" class="btn btn-primary">Back</button>
+          </div>
+        </form>
+      </div>
+      <div class="container-image">
+        <img
+          src="static/images/Humanitarian Help-pana.png"
+          width="100%"
+          height="100%"
+          alt="Humanitarian Help-pana.png"
+        />
+      </div>
+    </div>
+</body>
+</html>

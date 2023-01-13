@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/card.css') }}">
+    <title>Card</title>
+  </head>
+  <body>
+    <nav class="nav">
+        <form action="/back">
+            <button typ="submit" class="nav-button" name="login" id="login">back</button>
+        </form>
+        <form action="/logout">
+            <button typ="submit" class="nav-button" name="logout" id="logout">log out</button>
+        </form>
+      </nav>
+      <section>
+        <div class="container">
+          <div class="container-image">
+            <img
+              src="{{temp_cause.picture}}"
+              width="100%"
+              height="100%"
+              alt=""
+            />
+          </div>
+          <div class="container-details">
+            <p class="details-description">
+              {{temp_cause.description}}
+            </p>
+            <div>
+              <p class="details-price">
+                <span>Remaining amount : </span> {{temp_cause.remaining_amount}} &euro;
+              </p>
+              <p class="details-price"><span>collected : </span> {{temp_cause.donated_amount}} &euro;</p>
+            </div>
+            <div>
+              <p>many ways to pay and donate</p>
+              <div class="payment-container">
+                <img src="static/images/visaCard.jpg" alt="visaCard" />
+                <img src="static/images/payPal.jpg" alt="payPal" />
+                <img src="static/images/masterCard.jpg" alt="masterCard" />
+                <img src="static/images/applePay.jpg" alt="applePay" />
+                <img src="static/images/googlePay.jpg" alt="googlePay" />
+              </div>
+            </div>
+            <div>
+              <div class="payment-way">
+                <label for="payment-way">select payment way</label>
+                <select name="payment" id="payment-way">
+                  <option value="visaCard">visaCard</option>
+                  <option value="payPal">payPal</option>
+                  <option value="masterCard">masterCard</option>
+                  <option value="applePay">applePay</option>
+                  <option value="googlePay">googlePay</option>
+                </select>
+              </div>
+              
+            </div>
+            <form action="/successful_payment" method="POST">
+                <div class="payment-way">
+                    <label for="payment-amount"
+                      >select how much you want to donate</label
+                    >
+                    <select name="payment" id="payment-amount">
+                      <option name='5' value="5">5 &euro;</option>
+                      <option name='10'value="10">10 &euro;</option>
+                      <option name='20' value="20">20 &euro;</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p>OR</p>
+                    <input name="amount" id="amount"
+                      type="number"
+                      min="1"
+                      placeholder="set what you want in euro"
+                      class="amount"
+                    />
+                  </div>
+                <div class="accept">
+                <button>donate now</button>
+                <input type="hidden" id="{{temp_cause.id}}" name="number" value="{{temp_cause.id}}">
+                </div>
+          </div>
+        </div>
+  </body>

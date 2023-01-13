@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/login.css') }}">
+
+    <title>Login</title>
+</head>
+
+<body>
+  {% block content %}
+  {% endblock %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages%}
+          {% if category == 'error' %}
+          <div class="alert alert-danger alter-dismissable fade show" role="alert">
+              {{ message }}
+              <button type="buttton" class="close" data-dismiss="alert">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          {% else %}
+          <div class="alert alert-succes alter-dismissable fade show" role="alert">
+              {{ message }}
+              <button type="buttton" class="close" data-dismiss="alert">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          {% endif %}
+          {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+      ></script>
+
+
+
+    <div class="container">
+      <div class="container-form">
+        <div class="logo">
+          <img src="static/images/Logo.png" width="100%" height="100%" alt="Logo" />
+        </div>
+        <form action="/login" method="POST" class="form">  
+            
+          <div class="form-field">
+            
+            <label for="name">Username</label>
+            <input type="name" id="name" name="name" placeholder="Enter Username"/>
+          </div>
+          <div class="form-field">
+           
+            <label for="password">enter your password</label>
+            <input type="password" name="password" id="password" placeholder="Enter Password"/>
+          </div>
+          <div class="form-field">
+            <input type = "submit" value="Login"/>
+          </div>
+        </form>
+        <br/>
+        <form action="/register" method="GET" class="form">
+          <div class="form-field">
+            <input type = "submit" value="Register"/>
+          </div>
+        </form>
+      </div>
+      <div class="container-image">
+        <img
+          src="static/images/Humanitarian Help-pana.png"
+          width="100%"
+          height="100%"
+          alt="Humanitarian Help-pana.png"
+        />
+      </div>
+    </div>
+
+</body>
+</html>

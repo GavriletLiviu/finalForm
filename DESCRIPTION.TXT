@@ -1,0 +1,9 @@
+This is a simple web app which makes it easy for users to either create causes which other users can donate towards
+ or just create a simple user who is just able to donate a certain amount to any cause selected.
+ The images for each default cause were createa using OpenAI - DALL-E
+ Creators : 
+ Abdulrahman Zebn - html outline and css style files
+ Dursun Jepbarova card.html, donation.docx
+ Tahn Stacci Maria Heather Marais register.html, profile.html
+ Hind Anmar Ghazi Al-asmieaa login.html, createCause.html
+ Gavrilet Liviu-Cristian home.html and joining everything toghether
